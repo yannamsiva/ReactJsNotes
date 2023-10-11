@@ -1,0 +1,25 @@
+React Component Life Cycle
+==========================
+->React Js every component creation process involves various lifecycle methods.
+->These methods are termed as components lifecycle methods The lifecycle of the component is divided into four phases.
+-----------------------------------------------------------
+1.Initial phase
+  ->getDefaultProps()
+  ->getInitialState() 2.Mounting Phase
+  ->componentWillMount()
+  ->componentDidMount()
+  ->render() 3.Updating Phase
+  ->componentWillREcieveProps();
+  ->shouldComponentUpdate();
+  ->componentWillUpdate()
+  ->render()
+  ->componentDidUpdate(); 4.Unmounting Phase
+  ->componentWillUnmount();  Each phase contains some lifecycle methods React Js Class Component LifeCycle Application Development Steps
+================================================================
+step1:Create react js projection >npx create-react-app lifecycle
+
+ step2:swithc to the project location >cd lifecycle
+
+ step3:opent the project in to vscode lefecycle>code . 
+
+step4:add App class component lifecyle methods 

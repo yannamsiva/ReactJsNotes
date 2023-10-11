@@ -1,0 +1,268 @@
+
+React + Redux Application Development Steps
+
+===========================================
+
+Step1: Create the reactjs project
+
+ 
+
+>npx create-react-app redux_counter
+
+ 
+
+step2:switch to the project location
+
+ 
+
+>cd redux_counter
+
+ 
+
+step3:install react-redux and redux necessary pacakge
+
+ 
+
+redux_counter>npm install react-redux
+
+redux_counter>npm install redux
+
+ 
+
+Note:to check packages open package.json file
+
+ 
+
+step4:open the project into vscode
+
+ 
+
+step5:install bootstrap into your project
+
+ 
+
+redux_counter>npm install bootstrap
+
+ 
+
+Note:add import statement into index.js
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+ 
+
+step6:Create a Actions file src/actionTypes/counterActions.js
+
+ 
+
+export function increaseCount(){
+
+   return {type:'ADD'}
+
+}
+
+ 
+
+export function decreaseCount(){
+
+  return {type:'SUBTRACT'}
+
+}
+
+ 
+
+step7:Create the Reducer  src/reducers/counterReducer.js
+
+ 
+
+export default function counterReducer(state={count:0},action){
+
+   switch(action.type){
+
+       case 'ADD':
+
+                return{
+
+                   ...state,
+
+                   count:state.count+1;
+
+                }
+
+       case 'SUBTRACT':
+
+                return{
+
+                   ...state,
+
+                   count:sate.count-1;
+
+                }
+
+       default:
+
+               return state
+
+   }
+
+}
+
+ 
+
+step8:Create Store inside src/index.js
+
+ 
+
+Note:if you want to create store separate file no problem go head
+
+ 
+
+import React from 'react';
+
+import App from './App';
+
+import {createStore} from 'redux';
+
+import {Provider} from 'react-redux';
+
+import {counterReducer} from './counterReducer';
+
+ 
+
+//create store
+
+ 
+
+const store = createStore(counterReducer);
+
+ 
+
+ReactDOM.render{
+
+    <Provider store={store}>
+
+       <App/>
+
+    </Provide>
+
+}
+
+ 
+
+step9:Create a User Interface(UI) src/Component/counterInput.js
+
+ 
+
+import React,{Component} from 'react';
+
+import {connect} from 'react-redux';
+
+import {increaseCount,decreaseCount} from './counterActions';
+
+ 
+
+class counterInput extends Component{
+
+  handleOnClick = (e)=>{
+
+    e.preventDefault()
+
+    if(e.target.name == 'Up'){
+
+       this.props.increaseCount()
+
+    }else{
+
+       this.props.decreaseCount()
+
+    }
+
+ 
+
+
+
+  }
+
+  render(){
+
+    return (
+
+    <div>
+
+     <button name="Up" onClick={e=>this.handleOnClick(e)}>Up</button>
+
+      <button name="Down" onClick={e=>this.handleOnClick(e)}>Down</button>
+
+    </div>
+
+ 
+
+  )
+
+  }
+
+}
+
+const mapStateToProps = state =>{
+
+return(
+
+   {
+
+      count:state.count
+
+   }
+
+)
+
+}
+
+export default connect(mapStateToProps,{increaseCount,decreaseCount})(counterInput);
+
+ 
+
+step10:call counterInput component into root component(App.js)
+
+ 
+
+import CounterInput from './counterInput';
+
+<div>
+
+  <CounterInput/>
+
+</div>
+
+ 
+
+step11:run the application
+
+switch(action.type){
+
+        case 'ADD':
+
+                 return{
+
+                    ...state,
+
+                    count:state.count+1
+
+                 }
+
+        case 'SUBTRACT':
+
+                 return{
+
+                    ...state,
+
+                    count:state.count-1
+
+                 }
+
+        default:
+
+                return state
+
+    }
+
+ }

@@ -1,0 +1,28 @@
+What is React Js? ->React is a library for building composable user interfaces.
+->It encourages the creation of reusable UI Components
+->MVC applications level V-View component is nothing but react js.
+->By using react js your can able to develop single -page applications React Js Features ? ->JSX - JSX is javascript syntax extension
+->Components - React is all about Components
+->Unidirectional data flow and Flux Advantages of React? ->React used virtual DOM.This will improve apps performance.Since javascript virtual DOM
+is faster than the regular DOM.
+->React can be used on client and server side as well as with other frameworks.
+->Components and data pattern improve readability which helps maintain larger apps. 
+
+React Limitations? ->Covers only the view layer of the app.Hence you still need to choose other technologies 
+to get a complete tooling set for development. React Features:
+->JSX
+->Components
+->One-Way Data Binding
+->Virtual DOM
+->Simplicity
+->performance Setting Up
+----------
+1.Requirements Node Js and NPM,NPX
+>node -V
+>npm -V
+>npx -V How many way's to create react js application? ->There are many ways to create react js application 
+
+but we can focus the following commands only ->CDN Links
+->npm
+->npx                  
+

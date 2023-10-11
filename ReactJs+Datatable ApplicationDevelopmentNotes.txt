@@ -1,0 +1,174 @@
+React Js + Datatable Application development steps
+=================================================
+
+ 
+
+step1:Create a ReactJs Project
+
+ 
+
+>npx create-react-app react_datatable
+
+ 
+
+step2:switch to the project location
+
+ 
+
+>cd react_datatable
+
+ 
+
+step3:open the project into vscode
+
+ 
+
+react_datatable>code .
+
+ 
+
+step4:install bootstrap
+
+ 
+
+react_datatable>npm install bootstrap
+
+ 
+
+Note:add import statement into index.js file
+
+ 
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+ 
+
+step5:install Jquery and Datatable lib
+
+ 
+
+react_datatable>npm install jquery datatables.net
+
+ 
+
+step6:Create a DataTable Component with src/components
+
+ 
+
+import React, { useEffect, useState } from 'react'
+import $ from 'jquery';
+import 'datatables.net';
+
+ 
+
+const DataTable = () => {
+   const[data,setData]=useState()
+   const students = [
+    {"id":1,"name":"abc","course":"ReactJs"},
+    {"id":2,"name":"pqr","course":"angularjs"},
+    {"id":3,"name":"pqr","course":"angularjs"},
+    {"id":4,"name":"pqr","course":"VueJs"},
+    {"id":5,"name":"pqr","course":"Java"},
+    {"id":6,"name":"pqr","course":"angularjs"},
+    {"id":7,"name":"pqr","course":"Spring"},
+    {"id":8,"name":"pqr","course":"angularjs"},
+    {"id":9,"name":"pqr","course":"VueJs"},
+    {"id":10,"name":"pqr","course":"angularjs"},
+    {"id":11,"name":"pqr","course":"ReactJs"},
+    {"id":12,"name":"pqr","course":"angularjs"},
+    {"id":13,"name":"pqr","course":"ReactJs"},
+];
+
+ 
+
+   useEffect(()=>{
+       setData(students);
+       $(document).ready(function (){
+           $('#example').DataTable();
+       });
+   },[]);
+
+  return <div className='container'>
+<div className='card'>
+<div className='card-header'>
+<h1>Student List</h1>
+</div>
+<div className='card-body'>
+<table className='table table-striped' id='example'>
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Course</th>
+</tr>
+</thead>
+<tbody>
+                       {
+                           data.map((student,index)=>{
+                            return   <tr key={index}>
+<td>{index}</td>
+<td>{student.name}</td>
+<td>{student.course}</td>
+</tr>
+                           })
+
+                       }
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+ 
+
+}
+
+ 
+
+export default DataTable
+
+ 
+
+step7:call the DataTable in to root component (App.js)
+
+ 
+
+import './App.css';
+import DataTable from './components/DataTable';
+
+ 
+
+function App() {
+  return (
+<div className="App">
+<DataTable/>
+</div>
+  );
+}
+
+ 
+
+export default App;
+
+ 
+
+ 
+
+step8:run the application 
+react_datatable>npm start
+
+ 
+
+step9:How to build react project
+
+ 
+
+react_datatable>npm run build
+
+ 
+
+ 
+
+Note:just copy build folder files and handover to server admin they can deploy
+
+ 

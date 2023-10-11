@@ -1,0 +1,191 @@
+React Js + Rooting Application Development Steps
+================================================
+step1:Create a React Js Project
+
+>npx create-react-app routingapp
+
+step2:switch to the project location
+
+>cd routingapp
+
+step3:open the project in to your vscode
+
+routingapp>code .
+
+step4:to add bootstrap in yout project copy cdn link form getbootstrap.com and paste in to index.js file
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+step5:create the following components in to your component folder(src/components)
+->Home
+import React, { Component } from "react";
+
+class Home extends Component {
+    render() {
+        return <div>
+            <h1>Home Component</h1>
+        </div>
+    }
+}
+export default Home;
+
+->Service
+import React,{Component} from "react";
+class Service extends Component{
+    render(){
+        return <div>
+            <h1>Service Component</h1>
+        </div>
+    }
+}
+export default Service;
+->Videos
+import React,{Component} from "react";
+class Videos extends Component{
+    render(){
+        return <div>
+            <h1>Videos Component</h1>
+        </div>
+    }
+}
+export default Videos;
+->AboutUs
+import React, { Component } from 'react'
+
+ class AboutUs extends Component {
+  render() {
+    return (
+      <div>
+        <h1>AboutUs Component</h1>
+      </div>
+    )
+  }
+}
+
+export default AboutUs
+
+->ContactUs
+import React, { Component } from 'react'
+
+class ContactUs extends Component {
+  render() {
+    return (
+      <div>
+        <h1>ContactUs Component</h1>
+      </div>
+    )
+  }
+}
+
+export default ContactUs
+
+->NavBar
+import React, { Component } from 'react'
+import AboutUs from './AboutUs';
+import ContactUs from './ContactUs';
+import Home from './Home';
+import Service from './Service';
+import Videos from './Videos';
+class NavBar extends Component {
+    render() {
+        return (
+           
+          <div>
+
+          </div>
+           
+        )
+    }
+}
+
+export default NavBar
+
+
+step6:install react router dom
+
+>npm install react-router-dom
+
+NavBar.js component modify
+
+import React, { Component } from 'react'
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import AboutUs from './AboutUs';
+import ContactUs from './ContactUs';
+import Home from './Home';
+import Service from './Service';
+import Videos from './Videos';
+class NavBar extends Component {
+    render() {
+        return (
+           
+            <BrowserRouter>
+                <ul>
+                    <li>
+                        <Link to='/'>Home</Link>
+                    </li>
+                    <li>
+                        <Link to='/service'>Service</Link>
+                    </li>
+                    <li>
+                        <Link to='/videos'>Videos</Link>
+                    </li>
+                    <li>
+                        <Link to='/aboutus'>AboutUs</Link>
+                    </li>
+                    <li>
+                        <Link to='/contactus'>ContactUs</Link>
+                    </li>
+                </ul>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/service' element={<Service />} />
+                    <Route path='/videos' element={<Videos />} />
+                    <Route path='/aboutus' element={<AboutUs />} />
+                    <Route path='/contactus' element={<ContactUs />} />
+                </Routes>
+            </BrowserRouter>
+           
+        )
+    }
+}
+
+export default NavBar
+
+
+step7:Create a Footer Componet and add into routing
+import React, { Component } from 'react'
+
+ class Footer extends Component {
+  render() {
+    return (
+      <div>
+        <h5>All Copy Rights &copy; Reservered by Suchi It</h5>
+      </div>
+    )
+  }
+}
+
+export default Footer
+
+
+step8:call NavBar component in to root component(App.js)
+import './App.css';
+import Footer from './components/Footer';
+import NavBar from './components/NavBar';
+
+function App() {
+  return (
+    <div className="App">
+      <div className='container'>
+        <NavBar />
+        <Footer/>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
+step9:to test the application run the project
+
+>npm start

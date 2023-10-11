@@ -1,0 +1,174 @@
+ReactJs + Firebase Database Application Development Steps
+==========================================================
+
+ 
+
+step1:Create a reactjs project
+
+ 
+
+>npx create-react-app reactfireapp
+
+ 
+
+step2:switch to the project location
+
+ 
+
+>cd reactfireapp
+
+ 
+
+step3:open the project into vscode
+
+ 
+
+reactfireapp>code .
+
+ 
+
+step4:install bootstrap into your project
+
+ 
+
+reactfireapp>npm install bootstrap
+
+ 
+
+Note:add import statement into index.js
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+ 
+
+step5:with your google account login with firebase cloud database
+
+ 
+
+step6:Create firebase project
+
+ 
+
+step7:install firebase
+
+ 
+
+npm install firebase
+
+ 
+
+step8:create a firebase configuration file into src(firebase.js)
+// Import the functions you need from the SDKs you need
+import * as firebase from "firebase";
+
+ 
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBefxqc90HzIwA4MzP_PKaGvB8-p7IAXE0",
+  authDomain: "fireapp-5bc66.firebaseapp.com",
+  projectId: "fireapp-5bc66",
+  storageBucket: "fireapp-5bc66.appspot.com",
+  messagingSenderId: "765153977620",
+  appId: "1:765153977620:web:e2bf42296f6ed368404e01"
+};
+
+ 
+
+// Initialize Firebase
+const fireDb = firebase.initializeApp(firebaseConfig);
+export default fireDb.database().ref();
+
+ 
+
+step9:Create a Record in your firebase databad
+{
+email:"abc@gmail.com",
+mobile:9866037742,
+sid:100,
+sname:"abc"
+}
+
+ 
+
+step10:create StudentInfo component into src/Component folder
+
+ 
+
+import React, { useEffect, useState } from 'react'
+import firebaseDb from '../firebase';
+
+ 
+
+const StudentInfo = () => {
+    const[studentObj,setStudentObj]=useState({});
+    useEffect(()=>{
+        firebaseDb.child('student').on('value',snapshot=>{
+            if(snapshot.val()!=null){
+                setStudentObj({
+                    ...snapshot.val()
+                });
+            }else{
+                setStudentObj({});
+            }
+        })
+    },[]);
+    return (
+<div className='card'>
+<div className='card-header'>
+<h1>Student Information Details</h1>
+</div>
+<div className='card-body'>
+<table className='table table-striped'>
+<thead>
+<tr>
+<th>SID</th>
+<th>Name</th>
+<th>Email</th>
+<th>MobileNo</th>
+</tr>
+</thead>
+<tbody>
+                      {
+                          Object.keys(studentObj).map((key)=>{
+<tr key={key}>
+<td>{studentObj[key].sid}</td>
+<td>{studentObj[key].sname}</td>
+<td>{studentObj[key].email}</td>
+<td>{studentObj[key].mobile}</td>
+</tr>
+                          })
+                      }
+</tbody>
+</table>
+</div>
+</div>
+    )
+}
+
+ 
+
+export default StudentInfo
+
+ 
+
+step11:call the StudentInfo.js into your root app(App.js)
+import './App.css';
+import StudentInfo from './Components/StudentInfo';
+
+ 
+
+function App() {
+  return (
+<div className="App">
+<StudentInfo/>
+</div>
+  );
+}
+
+ 
+
+export default App;
+
+ 
+
+
+step12:to test the application run the app by using npm start

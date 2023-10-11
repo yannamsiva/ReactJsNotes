@@ -1,0 +1,35 @@
+React Js + Array + Functional Component + BootStrap based Application Development steps
+======================================================================================== 
+step1:Create a Reactjs project >npx create-react-app functional_array
+
+ step2:switch to the project location >cd functional_array 
+
+step3:open the project in to your vscode(Editor) functional_array>code .
+
+ step4:install the bootstrap functional_array>npm i bootstrap 
+
+step5:import bootstrap.min.css file in to index.js import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+ step6:Create Student component with in src/components folder
+import React from 'react'; function Student() {
+    const data = [
+        { "sid": 1, "sname": "abc", "course": "reactjs" },
+        { "sid": 2, "sname": "pqr", "course": "java" },
+        { "sid": 3, "sname": "xyz", "course": "Python" }
+    ] 
+    return <div className='container'><div className='card' style={{ marginTop: 20 }}><div className='card-header'><h1>Student List</h1></div><div className='card-body'>
+                {<table className='table table-striped'><thead><tr><th>Id</th><th>Name</th><th>Course</th></tr></thead><tbody>
+                            {
+                                data.map((d, i) => {
+                                    return <tr key={i}><td>{d.sid}</td><td>{d.sname}</td><td>{d.course}</td></tr>
+                                })
+                            }</tbody></table>
+                }</div></div></div>
+}
+export default Student;
+step7:call the Student component in to root component(App.js)
+import './App.css';
+import Student from './components/Student'; function App() {
+  return (<div className="App"><Student/></div>
+  );
+} export default App;     

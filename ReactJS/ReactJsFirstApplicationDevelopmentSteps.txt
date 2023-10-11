@@ -1,0 +1,13 @@
+React Js First Application Development steps
+============================================
+step1:Create a react js application >npx create-react-app fristapp 
+
+step2:switch to the project location >cd firstapp
+
+
+
+ step3:open the project in to vsCode firstapp>code . 
+
+
+
+step4:start the application >npm start

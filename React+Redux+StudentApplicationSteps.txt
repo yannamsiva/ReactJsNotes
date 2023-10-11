@@ -1,0 +1,199 @@
+React + Redux Application Development steps
+===========================================
+
+ 
+
+step1:Create a react js project
+
+ 
+
+>npx create-react-app student_redux
+
+ 
+
+step2:switch to the project location
+
+ 
+
+>cd student_redux
+
+ 
+
+step3:open the project into vscode
+
+ 
+
+student_redux>code .
+
+ 
+
+step4:install bootstrap
+
+ 
+
+npm install bootstrap
+
+ 
+
+Note:add import statement into to index.js 
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+ 
+
+step5:create a constant src/constants/constants.js
+export const SET_ALL_STUDENTS = "SET_ALL_STUDENTS";
+export const ADD_STUDENT = "ADD_STUDENT";
+
+ 
+
+ 
+
+step6:create a Action types src/ActionTypes/actionType.js
+
+ 
+
+import {ADD_STUDENT,SET_ALL_STUDENTS} from "../Constants/constants";
+
+ 
+
+export const setAllStudents  = (students)=>{
+return {
+type:SET_ALL_STUDENTS,
+payload:students,
+};
+};
+
+ 
+
+
+export const addStudent = (student)=>{
+   return {
+    type:ADD_STUDENT,
+    payload:student,
+};
+};
+
+ 
+
+step7:Create a Reducer and initialize state src/Reducer/studentReducer.js
+
+ 
+
+import {ADD_STUDENT,SET_ALL_STUDENTS} from "../Constants/constants";
+
+ 
+
+const initialState = {
+   students:[]
+}
+
+ 
+
+const studentReducer = (state=initialState,action)=>{
+   switch(action.type){
+     case SET_ALL_STUDENTS:{
+     return {
+      ...state,
+     students:action.payload,
+   };
+  }
+   case ADD_STUDENT{
+     return{
+     ...state,
+     students,
+     state.students.concat(action.payload),
+    };
+   }
+   default:{
+    return state;
+   }
+}  
+export default studentReducer;
+
+ 
+
+
+step8:Create a store in src/Store/store.js
+
+ 
+
+import {createStore} from "redux";
+import studentReducer from "../Reducer/studentReducer";
+
+ 
+
+const store = createStore(studentReducer);
+export default store;
+
+ 
+
+step9:Create a StudentList component within src/Components/StudentList.js
+
+ 
+
+import React,{useEffect} from "react";
+import {useDispatch,useSelector} from react-redux";
+import {setAllStudents} from "../redux/ActionTypes/actionTypes";
+
+ 
+
+const StudentList = ()=>{
+  const state = useSelector((state)=>state);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+   fetch("http://localhost:3001/students").then((res)=>res.json()).then((res)=>
+     dispatch(setAllStudents(res)));
+},[]);
+state.students);
+return(
+<div>
+<table className="table table-striped">
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+             {
+
+ 
+
+                 state.students && state.students.map((student,index)=>{
+                     return <tr key={index}>
+<td>{student.id}</td>
+<td>{student.name}</td>
+<td>{student.address}</td>
+</tr>
+
+ 
+
+                }
+             }
+</tbody>
+</table>
+</div>
+)
+
+ 
+
+}
+
+ 
+
+step10:Call component into root component(App.js)
+
+ 
+
+  <Provider store={store}>
+<StudentList/>
+</Provider>
+
+ 
+
+
+step11:run the application 
+npm start
+
+ 
